@@ -1,73 +1,73 @@
-# React + TypeScript + Vite
+# 🚀 Prompt Manager
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+An elegant, browser-native dashboard designed to store, organize, and copy your most frequent prompts and multimodal image attachments.
 
-Currently, two official plugins are available:
+**🌐 Live Site:** [https://onkarpawar1.github.io/prompt-manager/](https://onkarpawar1.github.io/prompt-manager/)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+---
 
-## React Compiler
+## ✨ Key Features
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- 📁 **Group & Organize**: Categorize prompts into distinct groups (e.g., Coding, Writing, Marketing) to locate them instantly.
+- 📋 **One-Click Copy**: Copy prompt text to your clipboard instantly with visual success feedback.
+- 🖼️ **Multimodal Support**: Attach images to your prompts by uploading files or **pasting images directly** from your clipboard.
+- 🗜️ **Automatic Image Compression**: Compresses attached images before storing them to prevent browser quota limit issues.
+- 💾 **Local Persistence**: Automatically saves your prompts to local browser storage so your dashboard is populated next time you visit.
+- 📤 **Backup & Sync**: Export your prompts collection to a standard JSON backup file, and import backups to restore them on any machine.
+- 📱 **Premium Responsive Design**: Fully responsive, clean card layouts with micro-animations and smooth transitions.
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## 🛠️ Technology Stack
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+- **Core**: [React 19](https://react.dev/) + [TypeScript](https://www.typescriptlang.org/)
+- **Build Tool**: [Vite](https://vite.dev/)
+- **Styling**: [Tailwind CSS v4](https://tailwindcss.com/)
+- **Icons**: [Lucide React](https://lucide.dev/)
+- **Hosting**: [GitHub Pages](https://pages.github.com/) with automated deployments via [GitHub Actions](https://github.com/features/actions)
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+---
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+## 💻 Local Setup & Development
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+To run this project on your machine, follow these steps:
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+### Prerequisites
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+Make sure you have Node.js and npm installed:
+- Node.js: `v20+` or `v24+` (recommended)
+- npm: `v10+`
+
+### Installation
+
+1. **Clone the repository**:
+   ```bash
+   git clone https://github.com/OnkarPawar1/prompt-manager.git
+   cd prompt-manager
+   ```
+
+2. **Install dependencies**:
+   ```bash
+   npm install
+   ```
+
+3. **Start the local development server**:
+   ```bash
+   npm run dev
+   ```
+   *The app will be accessible at: `http://localhost:5173/`*
+
+4. **Build the production bundle**:
+   ```bash
+   npm run build
+   ```
+   *This compiles TypeScript and builds static files to the `./dist` folder.*
+
+---
+
+## 🚀 CI/CD & Deployments
+
+This project is configured with a GitHub Actions workflow that automatically builds the application and deploys it to GitHub Pages whenever changes are pushed to the `main` branch.
+
+- **Workflow Configuration**: Located in [.github/workflows/deploy.yml](.github/workflows/deploy.yml)
+- **Deployment Branch**: Static assets are pushed to `gh-pages` branch.
