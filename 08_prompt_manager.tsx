@@ -150,28 +150,33 @@ export default function App() {
     showToast('Prompt deleted');
   };
 
-  const handleCopy = (text: string, id: string) => {
+  const handleCopy = async (text: string, id: string) => {
     if (!text) return;
-    const textArea = document.createElement("textarea");
-    textArea.value = text;
-    textArea.style.top = "0";
-    textArea.style.left = "0";
-    textArea.style.position = "fixed";
-    document.body.appendChild(textArea);
-    textArea.focus();
-    textArea.select();
-
     try {
-      const successful = document.execCommand('copy');
-      if (successful) {
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        await navigator.clipboard.writeText(text);
         setCopiedId(id);
       } else {
-        showToast('Failed to copy text', 'error');
+        const textArea = document.createElement("textarea");
+        textArea.value = text;
+        textArea.style.top = "0";
+        textArea.style.left = "0";
+        textArea.style.position = "fixed";
+        textArea.style.opacity = "0";
+        document.body.appendChild(textArea);
+        textArea.focus();
+        textArea.select();
+        const successful = document.execCommand('copy');
+        document.body.removeChild(textArea);
+        if (successful) {
+          setCopiedId(id);
+        } else {
+          showToast('Failed to copy text', 'error');
+        }
       }
     } catch (err) {
       showToast('Oops, unable to copy', 'error');
     }
-    document.body.removeChild(textArea);
   };
 
   const handleExport = () => {
@@ -405,9 +410,9 @@ export default function App() {
                           {/* Render Text Content if it exists */}
                           {prompt.content && (
                             <div className="flex-1 mb-4">
-                              <div className="text-sm text-slate-600 font-mono whitespace-pre-wrap bg-slate-50 p-3 rounded-xl border border-slate-100 h-full max-h-40 overflow-y-auto">
+                              <pre className="text-sm text-slate-600 font-mono whitespace-pre-wrap bg-slate-50 p-3 rounded-xl border border-slate-100 h-full max-h-40 overflow-y-auto">
                                 {prompt.content}
-                              </div>
+                              </pre>
                             </div>
                           )}
                           
